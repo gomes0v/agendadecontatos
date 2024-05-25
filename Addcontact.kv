@@ -1,0 +1,79 @@
+<AddContact>:
+    FloatLayout:
+        MDTopAppBar:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.97}
+            elevation: 0 
+        MDLabel:
+            text: "Novo contato"
+            pos_hint: {"center_x": 0.5, "center_y": 0.96}
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+            halign: "center"
+            bold: True
+            font_size: dp(20)
+        
+        MDIconButton:
+            id: go_back_btn
+            icon: 'arrow-left'
+            theme_text_color: 'Custom'
+            text_color: 1, 1, 1, 1
+            pos_hint: {"center_x" : .06, "center_y" : .96}
+            on_press: 
+                root.manager.transition.direction= 'right'
+                root.manager.current = 'mainScreen'
+        
+        MDTextField:
+            id: name_field
+            hint_text: "Nome"
+            mode: 'round'
+            icon_right: 'account'
+            required: True
+            helper_text: "*Obrigatório"
+            helper_text_mode: "on_error"
+            on_text: root.check_requirements()
+            pos_hint: {"center_x": .5, "center_y": .80}
+            size_hint_x: .8
+
+        MDTextField:
+            id: email_field
+            hint_text: "Email"
+            mode: 'round'
+            icon_right: 'mail'
+            pos_hint: {"center_x": .5, "center_y": .65}
+            size_hint_x: .8
+
+        MDTextField:
+            id: phone_field
+            hint_text: "Telefone"
+            mode: 'round'
+            icon_right: 'phone'
+            input_filter: 'int'
+            helper_text: "*Obrigatório"
+            helper_text_mode: "on_error"
+            max_text_length: 15
+            on_text: root.check_requirements()
+            required: True
+            pos_hint: {"center_x": .5, "center_y": .50}
+            size_hint_x: .8
+
+        MDTextField:
+            id: address_field
+            hint_text: "Endereço"
+            mode: 'round'
+            icon_right: 'home'
+            multiline: True
+            pos_hint: {"center_x": .5, "center_y": .35}
+            size_hint_x: .8
+
+        MDRaisedButton:
+            id: save
+            text: 'Adicionar aos contatos'
+            disabled: True
+            pos_hint: {"center_x" : .50, "center_y" : .13}
+            size_hint_x: 0.8
+            elevation: 0
+            on_press: 
+                root.add_contact_backend()
+                root.manager.current = 'mainScreen'
+            md_bg_color: .23, 0.7, 0.35, 1
+            

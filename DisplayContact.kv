@@ -1,0 +1,79 @@
+#:import Clipboard kivy.core.clipboard.Clipboard
+
+<DisplayContact>:
+    id: display_contact   
+    FloatLayout:
+        MDTopAppBar:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.97}
+            elevation: 0
+        MDLabel:
+            text: "Detalhes"
+            pos_hint: {"center_x": 0.5, "center_y": 0.96}
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+            bold: True
+            halign: 'center'
+            font_size: dp(20)
+        
+        MDLabel:
+            id: name
+            text: ""
+            halign: 'left'
+            pos_hint: {"center_x": .58, "center_y": .80}
+            
+        
+        MDLabel:
+            id: email
+            text: ""
+            halign: 'left'
+            pos_hint: {"center_x": .58, "center_y": .65}
+
+        MDLabel:
+            id: phone
+            text: ""
+            halign: 'left'
+            pos_hint: {"center_x": .58, "center_y": .50}
+        
+        MDLabel:
+            id: address
+            text: ""
+            halign: 'left'
+            pos_hint: {"center_x": .58, "center_y": .35}
+        
+        MDIconButton:
+            id: name_cpy
+            icon: 'content-copy'
+            on_release:
+                Clipboard.copy(name.text)
+            pos_hint: {"center_x": .87, "center_y": .80}
+
+        MDIconButton:
+            id: email_cpy
+            icon: 'content-copy'
+            on_release:
+                Clipboard.copy(email.text)
+            pos_hint: {"center_x": .87, "center_y": .65}
+
+        MDIconButton:
+            id: phone_cpy
+            icon: 'content-copy'
+            on_release:
+                Clipboard.copy(phone.text)
+            pos_hint: {"center_x": .87, "center_y": .50}
+
+        MDIconButton:
+            id: address_cpy
+            icon: 'content-copy'
+            on_release:
+                Clipboard.copy(address.text)
+            pos_hint: {"center_x": .87, "center_y": .35}
+        MDIconButton:
+            id: go_back_btn
+            icon: 'arrow-left'
+            theme_text_color: 'Custom'
+            text_color: 1, 1, 1, 1
+            pos_hint: {"center_x" : .06, "center_y" : .96}
+            on_press: 
+                root.manager.transition.direction= 'right'
+                root.manager.current = 'mainScreen'
+
